@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>袁宇川 · 个人主页</title>
+  <meta name="description" content="袁宇川的个人主页 —— 金融学在读,记录简介、爱好、课程项目与联系方式。" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌿</text></svg>" />
+  <style>
+    :root {
+      --bg: #0e1726;
+      --bg-soft: #16233a;
+      --card: #1b2b45;
+      --text: #e9eef6;
+      --muted: #9fb0c7;
+      --accent: #35c4a0;
+      --accent-2: #f0b34c;
+      --border: rgba(255, 255, 255, 0.08);
+      --radius: 18px;
+      --maxw: 920px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+        "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+      background:
+        radial-gradient(1000px 500px at 85% -10%, rgba(53, 196, 160, 0.16), transparent 60%),
+        radial-gradient(800px 400px at -10% 30%, rgba(240, 179, 76, 0.10), transparent 55%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; }
+
+    .wrap {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 0 22px;
+    }
+
+    header.hero {
+      padding: 72px 0 46px;
+      text-align: center;
+    }
+
+    .avatar {
+      width: 96px; height: 96px;
+      border-radius: 50%;
+      margin: 0 auto 18px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 42px; font-weight: 700;
+      color: var(--bg);
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: 0 10px 40px rgba(53, 196, 160, 0.28);
+    }
+
+    header.hero h1 {
+      margin: 0;
+      font-size: clamp(34px, 6vw, 52px);
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+
+    header.hero p.tagline {
+      margin: 10px auto 0;
+      font-size: 17px;
+      color: var(--accent);
+      font-weight: 600;
+      letter-spacing: 2px;
+    }
+
+    header.hero p.desc {
+      margin: 14px auto 0;
+      max-width: 620px;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    nav.quick {
+      display: flex; flex-wrap: wrap; gap: 10px;
+      justify-content: center;
+      margin-top: 26px;
+    }
+
+    nav.quick a {
+      text-decoration: none;
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 8px 16px;
+      border-radius: 999px;
+      font-size: 14px;
+      color: var(--text);
+      transition: 0.2s;
+    }
+    nav.quick a:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    section {
+      padding: 34px 0 8px;
+    }
+
+    .section-title {
+      display: flex; align-items: center; gap: 12px;
+      margin: 0 0 22px;
+      font-size: 24px; font-weight: 700;
+    }
+    .section-title::after {
+      content: "";
+      flex: 1; height: 1px;
+      background: var(--border);
+    }
+    h2 .ico { font-size: 24px; }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px 24px;
+      margin-bottom: 16px;
+    }
+
+    .grid {
+      display: grid; gap: 16px;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+
+    .about-text p { margin: 0 0 12px; color: var(--text); }
+    .about-text p:last-child { margin-bottom: 0; }
+    .about-text strong { color: var(--accent); }
+
+    .skill-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+    .pill {
+      background: var(--bg-soft);
+      border: 1px solid var(--border);
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .hobby-item {
+      text-align: center;
+      padding: 20px 14px;
+    }
+    .hobby-item .h-ico { font-size: 30px; }
+    .hobby-item h3 { margin: 10px 0 6px; font-size: 17px; }
+    .hobby-item p { margin: 0; font-size: 13.5px; color: var(--muted); }
+
+    .project-title {
+      display: flex; justify-content: space-between; align-items: baseline; gap: 12px;
+      flex-wrap: wrap;
+    }
+    .project-title h3 { margin: 0; font-size: 18px; }
+    .project-title .year { font-size: 13px; color: var(--accent-2); white-space: nowrap; }
+    .project p { margin: 10px 0 0; font-size: 14.5px; color: var(--muted); }
+    .project-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+
+    .contact-links {
+      display: grid; gap: 14px;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+    .contact-links a {
+      display: flex; align-items: center; gap: 14px;
+      text-decoration: none;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px 18px;
+      transition: 0.2s;
+    }
+    .contact-links a:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+    }
+    .contact-links .c-ico { font-size: 24px; }
+    .contact-links .c-label { font-size: 13px; color: var(--muted); }
+    .contact-links .c-value { font-size: 15px; font-weight: 600; word-break: break-all; }
+
+    footer {
+      text-align: center;
+      padding: 44px 0 40px;
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 20px;
+      border-top: 1px solid var(--border);
+    }
+    footer a { color: var(--accent); text-decoration: none; }
+
+    @media (max-width: 520px) {
+      header.hero { padding: 54px 0 34px; }
+      .grid { grid-template-columns: 1fr; }
+    }
+
+    /* 无 JS 时点击锚点也正常滚动 */
+    section { scroll-margin-top: 16px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <!-- 顶部 -->
+    <header class="hero">
+      <div class="avatar">袁</div>
+      <h1>袁宇川</h1>
+      <p class="tagline">YUAN YUCHUAN</p>
+      <p class="desc">
+        经济学 · 金融学在读 · 对投资分析与计量方法抱有热情的本科生。
+        正在把课堂所学应用到真实的宏观与公司研究之中。
+      </p>
+      <nav class="quick">
+        <a href="#about">关于我</a>
+        <a href="#hobbies">爱好</a>
+        <a href="#projects">课程项目</a>
+        <a href="#contact">联系方式</a>
+      </nav>
+    </header>
+
+    <!-- 简介 -->
+    <section id="about">
+      <h2 class="section-title"><span class="ico">👋</span> 简介</h2>
+      <div class="card about-text">
+        <p>
+          你好,我是 <strong>袁宇川</strong>,目前攻读 <strong>金融学</strong>。我关注
+          公司金融、资产定价与宏观经济数据分析,习惯用量化工具把想法变成可验证的结论。
+        </p>
+        <p>
+          学习之外,我喜欢保持好奇、持续输入与输出,享受把一个复杂问题拆解清楚的过程。
+          对我而言,良好的沟通和对细节的严谨同样重要 —— 这既是做研究的态度,也是做人的态度。
+        </p>
+        <div class="skill-pills">
+          <span class="pill">金融分析</span>
+          <span class="pill">公司金融</span>
+          <span class="pill">数据计量</span>
+          <span class="pill">Python / Excel</span>
+          <span class="pill">财务建模</span>
+          <span class="pill">研究报告写作</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 爱好 -->
+    <section id="hobbies">
+      <h2 class="section-title"><span class="ico">🎯</span> 爱好</h2>
+      <div class="grid">
+        <div class="card hobby-item">
+          <div class="h-ico">📈</div>
+          <h3>投资与市场</h3>
+          <p>跟踪宏观数据、阅读公司年报,记录自己的投资观察。</p>
+        </div>
+        <div class="card hobby-item">
+          <div class="h-ico">📚</div>
+          <h3>阅读</h3>
+          <p>经济史、人物传记与思想类书籍,保持独立思考。</p>
+        </div>
+        <div class="card hobby-item">
+          <div class="h-ico">🏃</div>
+          <h3>运动</h3>
+          <p>跑步与球类运动,锻炼耐力也放松心情。</p>
+        </div>
+        <div class="card hobby-item">
+          <div class="h-ico">✈️</div>
+          <h3>旅行</h3>
+          <p>体验不同城市的烟火气,观察世界真实的样子。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 课程项目 -->
+    <section id="projects">
+      <h2 class="section-title"><span class="ico">📊</span> 课程项目</h2>
+
+      <div class="card project">
+        <div class="project-title">
+          <h3>上市公司估值分析</h3>
+          <span class="year">课程项目 · 公司金融</span>
+        </div>
+        <p>
+          基于公开财报,运用 DCF 与相对估值法对某 A 股公司进行估值建模,
+          输出敏感性分析与投资建议,并撰写完整研究报告。
+        </p>
+        <div class="project-tags">
+          <span class="pill">DCF 估值</span>
+          <span class="pill">财务分析</span>
+          <span class="pill">报告写作</span>
+        </div>
+      </div>
+
+      <div class="card project">
+        <div class="project-title">
+          <h3>宏观经济数据可视化</h3>
+          <span class="year">课程项目 · 计量经济学</span>
+        </div>
+        <p>
+          使用 Python 清洗并可视化近十年 GDP、CPI 与利率数据,
+          分析宏观经济周期,并展示其与金融市场的关系。
+        </p>
+        <div class="project-tags">
+          <span class="pill">Python</span>
+          <span class="pill">数据可视化</span>
+          <span class="pill">Pandas</span>
+        </div>
+      </div>
+
+      <div class="card project">
+        <div class="project-title">
+          <h3>资产组合配置研究</h3>
+          <span class="year">课程项目 · 投资学</span>
+        </div>
+        <p>
+          探究 Markowitz 均值-方差模型在 A 股市场的应用,
+          比较不同风险偏好下的最优组合构建方式与回测表现。
+        </p>
+        <div class="project-tags">
+          <span class="pill">组合优化</span>
+          <span class="pill">回测</span>
+          <span class="pill">量化</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 联系方式 -->
+    <section id="contact">
+      <h2 class="section-title"><span class="ico">📮</span> 联系方式</h2>
+      <div class="contact-links">
+        <a href="https://github.com/yuchenyuan723" target="_blank" rel="noopener">
+          <span class="c-ico">🐙</span>
+          <span>
+            <span class="c-label">GitHub</span><br />
+            <span class="c-value">yuchenyuan723</span>
+          </span>
+        </a>
+        <a href="https://vercel.com/yuchenyuan723s-projects" target="_blank" rel="noopener">
+          <span class="c-ico">▲</span>
+          <span>
+            <span class="c-label">Vercel 项目</span><br />
+            <span class="c-value">yuchenyuan723s-projects</span>
+          </span>
+        </a>
+        <a href="#">
+          <span class="c-ico">📧</span>
+          <span>
+            <span class="c-label">邮箱</span><br />
+            <span class="c-value">youremail@example.com</span>
+          </span>
+        </a>
+      </div>
+      <p style="color:var(--muted);font-size:13px;margin-top:12px;">
+        👉 邮箱与更多联系方式为占位符,可自行替换为真实信息。
+      </p>
+    </section>
+
+    <footer>
+      <p>© 2026 袁宇川 · 用 <a href="https://vercel.com" target="_blank" rel="noopener">Vercel</a> 与 GitHub Pages 打造</p>
+    </footer>
+
+  </div>
+</body>
+</html>
