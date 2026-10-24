@@ -1,0 +1,63 @@
+/* Self-contained authoring UI. The public page remains usable in preview mode. */
+.birthday-editor,.birthday-editor-toggle{font-family:"Noto Sans SC","Microsoft YaHei",sans-serif;font-size:13px;line-height:1.6;color:#533f37;box-sizing:border-box}
+.birthday-editor *{box-sizing:border-box}
+.birthday-editor[hidden]{display:none!important}
+.birthday-editor-toggle{position:fixed;z-index:1050;right:24px;bottom:24px;border:1px solid #d5b9a6;border-radius:999px;background:#fffaf2;padding:12px 20px;box-shadow:0 6px 25px #50332020;cursor:pointer;font-weight:600;letter-spacing:.06em}
+.birthday-editor-toggle:hover{background:#f4e4d5}
+.birthday-editor-toggle:disabled{opacity:.65;cursor:wait}
+.birthday-editor{position:fixed;inset:0 0 0 auto;width:380px;max-width:100vw;height:100vh;height:100dvh;z-index:1100;background:#fcf8f2;border-left:1px solid #dfcfc0;box-shadow:-12px 0 40px #51372a12;display:flex;flex-direction:column;isolation:isolate;text-align:left;letter-spacing:normal}
+.birthday-editor .be-header{display:flex;align-items:center;justify-content:space-between;padding:23px 20px 10px;flex:none;background:transparent;position:static;border:0}
+.birthday-editor .be-eyebrow{font-size:10px;letter-spacing:.2em;color:#947b68}
+.birthday-editor h2{font-size:20px;line-height:1.4;margin:4px 0 0;font-weight:600;color:#533f37;letter-spacing:0}
+.birthday-editor h3{font-size:14px;margin:10px 0}
+.birthday-editor button,.birthday-editor .be-file-button{font:inherit;border:1px solid #ddccbb;border-radius:7px;background:#fffdf8;color:#664c3f;padding:7px 10px;cursor:pointer;line-height:1.5;letter-spacing:0;text-align:center;display:inline-flex;align-items:center;justify-content:center;min-height:35px;box-shadow:none;transition:background .15s}
+.birthday-editor button:hover,.birthday-editor .be-file-button:hover{background:#f2e6d9}
+.birthday-editor button:disabled{opacity:.4;cursor:not-allowed}
+.birthday-editor .be-close{font-size:24px;width:36px;padding:0;border:0;background:transparent}
+.birthday-editor :focus-visible,.birthday-editor-toggle:focus-visible{outline:3px solid #a26a44;outline-offset:3px}
+.birthday-editor .be-status{margin:0 20px 6px;color:#6a7450;font-size:12px;flex:none}
+.birthday-editor .be-status:before{content:"●";font-size:8px;margin-right:7px;vertical-align:middle}
+.birthday-editor .be-status[data-state="pending"]{color:#966b23}
+.birthday-editor .be-status[data-state="error"]{color:#a23d38}
+.birthday-editor .be-notice{font-size:11px;color:#8c7868;margin:0 20px 12px;line-height:1.6;max-height:85px;overflow:auto;overflow-wrap:anywhere;flex:none}
+.birthday-editor .be-notice.is-error{color:#9f4138}
+.birthday-editor .be-tools{display:grid;grid-template-columns:1fr 1fr;gap:7px;padding:0 20px 16px;border-bottom:1px solid #e6d9cd;flex:none}
+.birthday-editor .be-primary{background:#8d5944;border-color:#8d5944;color:#fffaf3}
+.birthday-editor .be-primary:hover{background:#714633}
+.birthday-editor .be-body{overflow-y:auto;overscroll-behavior:contain;min-height:0;flex:1;padding:0 20px 20px;scrollbar-width:thin;scrollbar-color:#cbb49f #fcf8f2}
+.birthday-editor .be-section{border:0;border-bottom:1px solid #e5d8cc;margin:0;padding:0;background:transparent}
+.birthday-editor summary{padding:16px 0;cursor:pointer;font-size:13px;font-weight:600;list-style-position:inside;color:#684f40}
+.birthday-editor .be-section-content{padding:0 0 18px}
+.birthday-editor .be-field{margin:0 0 12px}
+.birthday-editor .be-field label{display:block;margin-bottom:5px;font-size:11px;color:#8b7562}
+.birthday-editor input:not([type="file"]):not([type="range"]),.birthday-editor textarea{display:block;width:100%;border:1px solid #dbcbbc;border-radius:6px;background:#fffefa;padding:9px 10px;color:#533f37;font:inherit;line-height:1.5;box-shadow:none;min-height:38px;letter-spacing:normal}
+.birthday-editor textarea{resize:vertical;min-height:78px;max-height:400px}
+.birthday-editor input:focus,.birthday-editor textarea:focus{border-color:#ad8262}
+.birthday-editor .be-help{font-size:11px;color:#8b7868;margin:0 0 12px;line-height:1.7;overflow-wrap:anywhere}
+.birthday-editor .be-file-button{position:relative;overflow:hidden;font-size:12px;vertical-align:middle}
+.birthday-editor .be-file-button input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer}
+.birthday-editor .be-file-button:focus-within{outline:3px solid #a26a44;outline-offset:2px}
+.birthday-editor .be-photo-card{margin:14px 0;padding:12px;border:1px solid #e2d3c4;border-radius:9px;background:#f7f0e7;transition:border-color .15s}
+.birthday-editor .be-photo-card.be-drop{border:2px dashed #8d5944;padding:11px}
+.birthday-editor .be-card-heading{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px;font-size:12px}
+.birthday-editor .be-drag{font-size:10px;color:#8b7562;cursor:grab;padding:5px;user-select:none}
+.birthday-editor .be-drag:active{cursor:grabbing}
+.birthday-editor .be-thumbnail{display:block;width:100%;height:135px;object-fit:cover;border-radius:5px;background:#e9dfd1}
+.birthday-editor .be-thumbnail[hidden],.birthday-editor .be-empty[hidden]{display:none}
+.birthday-editor .be-empty{display:grid;place-items:center;height:90px;margin:0;background:#eee4d7;color:#a58c74;border:1px dashed #cfbca8;border-radius:5px;font-size:12px}
+.birthday-editor .be-row{display:flex;flex-wrap:wrap;gap:5px;margin:10px 0 12px}
+.birthday-editor .be-row button,.birthday-editor .be-row .be-file-button{font-size:11px;padding:5px 7px;min-height:30px}
+.birthday-editor .be-focal{display:flex;align-items:center;gap:10px;margin:6px 0 10px}
+.birthday-editor .be-focal label{font-size:10px;color:#88715d;flex:none}
+.birthday-editor input[type="range"]{width:100%;min-width:0;accent-color:#987050;cursor:pointer;height:22px;margin:0}
+.birthday-editor .be-gift{padding-top:8px;border-top:1px solid #e6d9cd}
+.birthday-editor .be-footer{position:static;display:flex;gap:8px;justify-content:space-between;flex:none;padding:12px 20px max(12px,env(safe-area-inset-bottom));margin:0;border-top:1px solid #e5d8cc;background:#f7f0e7;letter-spacing:0}
+.birthday-editor .be-footer button{font-size:11px}
+.birthday-editor.be-busy .be-tools,.birthday-editor.be-busy .be-file-button,.birthday-editor.be-busy .be-footer{opacity:.6;pointer-events:none}
+@media(min-width:761px){body.birthday-editing{padding-right:380px}body.birthday-editing .birthday-editor-toggle{right:400px}}
+@media(max-width:760px){.birthday-editor{width:100%;border:0;padding-top:env(safe-area-inset-top)}body.birthday-editing{overflow:hidden}.birthday-editor-toggle{right:14px;bottom:18px;bottom:max(18px,env(safe-area-inset-bottom));font-size:12px;padding:10px 15px}.birthday-editor .be-header{padding-top:16px}.birthday-editor .be-tools{grid-template-columns:repeat(4,minmax(0,1fr));gap:5px}.birthday-editor .be-tools button,.birthday-editor .be-tools .be-file-button{font-size:11px;padding:7px 4px}.birthday-editor .be-body{padding-left:20px;padding-right:20px}.birthday-editor .be-thumbnail{height:180px}.birthday-editor .be-row button,.birthday-editor .be-row .be-file-button{min-height:38px}.birthday-editor input[type="range"]{height:30px}}
+@media(prefers-reduced-motion:reduce){.birthday-editor *{transition:none!important}}
+@media(min-width:761px){body.birthday-editing .scene-nav{left:calc((100% - 380px)/2)}body.birthday-editing main{padding-left:25px;padding-right:25px}body.birthday-editing .hero h1{font-size:52px}body.birthday-editing .hero-installation{right:-10px;transform:scale(.78);transform-origin:right center}body.birthday-editing .entry-grid{gap:15px;padding-left:0;padding-right:0}body.birthday-editing .entry h2{font-size:19px}body.birthday-editing .entry p{min-height:40px}body.birthday-editing .choice-heading{margin-left:0;margin-right:0}}
+@media(min-width:761px) and (max-width:1200px){body.birthday-editing .hero-installation{opacity:.4;right:-40px;transform:scale(.6)}body.birthday-editing .hero h1{font-size:42px}body.birthday-editing .entry-grid,body.birthday-editing .park-grid,body.birthday-editing .mag-cover,body.birthday-editing .mag-story{grid-template-columns:1fr}body.birthday-editing .memory-grid{grid-template-columns:repeat(2,1fr)}body.birthday-editing .scene-nav a{padding:10px;font-size:10px}}
+@media(max-width:760px){.birthday-editor-toggle{bottom:85px}}
+@media print{.birthday-editor,.birthday-editor-toggle{display:none!important}body.birthday-editing{padding-right:0}}
