@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>袁宇川 | 复旦大学 · 金融学 · 量化投资</title>
+<meta name="description" content="袁宇川的自我介绍 —— 复旦大学金融学（量化投资方向），关注多因子选股、因子挖掘与回测框架、机器学习在资产定价中的应用。">
+<style>
+  :root {
+    --bg: #0b1220;
+    --bg-soft: #111a2e;
+    --card: rgba(255, 255, 255, 0.04);
+    --line: rgba(255, 255, 255, 0.10);
+    --text: #e7edf7;
+    --muted: #93a2ba;
+    --accent: #4f8cff;
+    --accent-2: #35d0a5;
+    --radius: 18px;
+    --maxw: 1080px;
+    font-synthesis: none;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background:
+      radial-gradient(1200px 600px at 15% -10%, rgba(79, 140, 255, 0.20), transparent 60%),
+      radial-gradient(900px 500px at 100% 0%, rgba(53, 208, 165, 0.14), transparent 55%),
+      var(--bg);
+    color: var(--text);
+    font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", "Hiragino Sans GB", system-ui, -apple-system, sans-serif;
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  .wrap { width: min(var(--maxw), calc(100% - 48px)); margin: 0 auto; }
+
+  /* ---------- 导航 ---------- */
+  header.nav {
+    position: sticky; top: 0; z-index: 20;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    background: rgba(11, 18, 32, 0.72);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    height: 64px;
+  }
+  .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; letter-spacing: .02em; }
+  .brand .dot {
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--accent-2);
+    box-shadow: 0 0 0 4px rgba(53, 208, 165, .15);
+  }
+  nav.links { display: flex; gap: 26px; font-size: 14px; color: var(--muted); }
+  nav.links a { transition: color .2s; }
+  nav.links a:hover { color: var(--text); }
+
+  /* ---------- 首屏 ---------- */
+  .hero {
+    display: grid;
+    grid-template-columns: 1.35fr .65fr;
+    gap: 48px;
+    align-items: center;
+    padding: 84px 0 64px;
+  }
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 13px; letter-spacing: .12em;
+    color: var(--accent-2);
+    border: 1px solid rgba(53, 208, 165, .35);
+    background: rgba(53, 208, 165, .08);
+    padding: 5px 12px; border-radius: 999px;
+    margin-bottom: 22px;
+  }
+  h1 {
+    font-size: clamp(38px, 6vw, 60px);
+    line-height: 1.15;
+    margin: 0 0 14px;
+    letter-spacing: -.01em;
+  }
+  h1 .accent {
+    background: linear-gradient(100deg, var(--accent), var(--accent-2));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .tagline { font-size: 18px; color: var(--muted); margin: 0 0 26px; max-width: 34em; }
+  .tagline strong { color: var(--text); font-weight: 600; }
+
+  .pill-row { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 32px; }
+  .pill {
+    font-size: 13px; color: var(--text);
+    border: 1px solid var(--line);
+    background: var(--card);
+    padding: 6px 14px; border-radius: 999px;
+  }
+
+  .cta { display: flex; flex-wrap: wrap; gap: 12px; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 11px 22px; border-radius: 999px;
+    font-size: 14px; font-weight: 600;
+    border: 1px solid transparent;
+    transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+  }
+  .btn:hover { transform: translateY(-2px); }
+  .btn-primary {
+    background: linear-gradient(100deg, var(--accent), #6aa6ff);
+    color: #071018;
+    box-shadow: 0 10px 26px -10px rgba(79, 140, 255, .8);
+  }
+  .btn-ghost { border-color: var(--line); background: var(--card); color: var(--text); }
+  .btn-ghost:hover { background: rgba(255, 255, 255, .08); }
+
+  /* 头像 / 徽标 */
+  .avatar-card {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    border-radius: 24px;
+    border: 1px solid var(--line);
+    background:
+      linear-gradient(160deg, rgba(79,140,255,.20), rgba(53,208,165,.10)),
+      var(--bg-soft);
+    display: grid; place-items: center;
+    overflow: hidden;
+  }
+  .avatar-card::after {
+    content: "";
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
+    background-size: 28px 28px;
+    -webkit-mask-image: radial-gradient(circle at 50% 45%, #000 30%, transparent 75%);
+    mask-image: radial-gradient(circle at 50% 45%, #000 30%, transparent 75%);
+    pointer-events: none;
+  }
+  .avatar-initials {
+    font-size: clamp(56px, 9vw, 88px);
+    font-weight: 800;
+    letter-spacing: .04em;
+    background: linear-gradient(120deg, #ffffff, #9fc2ff 55%, var(--accent-2));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    line-height: 1;
+  }
+  .avatar-caption {
+    position: absolute; bottom: 16px; left: 0; right: 0;
+    text-align: center; font-size: 12px; letter-spacing: .18em;
+    color: var(--muted); text-transform: uppercase;
+  }
+
+  /* ---------- 通用章节 ---------- */
+  section { padding: 56px 0; }
+  .sec-head { display: flex; align-items: baseline; gap: 14px; margin-bottom: 28px; }
+  .sec-num { font-size: 13px; letter-spacing: .14em; color: var(--accent-2); font-weight: 700; }
+  .sec-head h2 { font-size: clamp(24px, 3.2vw, 30px); margin: 0; letter-spacing: -.005em; }
+  .sec-head .line { flex: 1; height: 1px; background: var(--line); }
+
+  .card {
+    border: 1px solid var(--line);
+    background: var(--card);
+    border-radius: var(--radius);
+    padding: 24px 26px;
+  }
+
+  .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+
+  /* 关于我 */
+  .about-card p { margin: 0 0 14px; color: #cbd6e6; }
+  .about-card p:last-child { margin-bottom: 0; }
+  .facts { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .fact {
+    border: 1px solid var(--line);
+    background: var(--card);
+    border-radius: 14px;
+    padding: 16px 18px;
+  }
+  .fact .k { font-size: 12px; letter-spacing: .1em; color: var(--muted); }
+  .fact .v { font-size: 15px; font-weight: 600; margin-top: 4px; }
+
+  /* 技能 */
+  .skill-card h3 { margin: 0 0 4px; font-size: 16px; }
+  .skill-card .sub { font-size: 12px; color: var(--muted); letter-spacing: .08em; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+  .chip {
+    font-size: 13px; padding: 5px 12px; border-radius: 8px;
+    background: rgba(79, 140, 255, .12);
+    border: 1px solid rgba(79, 140, 255, .28);
+    color: #cfe0ff;
+  }
+  .skill-card:nth-child(2) .chip {
+    background: rgba(53, 208, 165, .10);
+    border-color: rgba(53, 208, 165, .28);
+    color: #c8f4e6;
+  }
+  .skill-card:nth-child(3) .chip {
+    background: rgba(255, 255, 255, .06);
+    border-color: var(--line);
+    color: var(--text);
+  }
+
+  /* 项目经历 */
+  .tl { position: relative; padding-left: 28px; }
+  .tl::before {
+    content: ""; position: absolute; left: 6px; top: 8px; bottom: 8px;
+    width: 1px; background: linear-gradient(var(--accent), rgba(53,208,165,.35), transparent);
+  }
+  .tl-item { position: relative; padding-bottom: 26px; }
+  .tl-item:last-child { padding-bottom: 0; }
+  .tl-item::before {
+    content: ""; position: absolute; left: -28px; top: 9px;
+    width: 13px; height: 13px; border-radius: 50%;
+    background: var(--bg); border: 2px solid var(--accent);
+    box-shadow: 0 0 0 4px rgba(79, 140, 255, .12);
+  }
+  .tl-item .when { font-size: 12px; letter-spacing: .1em; color: var(--accent-2); }
+  .tl-item h3 { margin: 4px 0 6px; font-size: 18px; }
+  .tl-item .role { font-size: 13px; color: var(--muted); margin-bottom: 10px; }
+  .tl-item ul { margin: 0; padding-left: 18px; color: #c3cfe0; }
+  .tl-item li { margin-bottom: 6px; }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+  .tag {
+    font-size: 12px; color: var(--muted);
+    border: 1px dashed var(--line);
+    padding: 2px 10px; border-radius: 999px;
+  }
+
+  /* 兴趣 */
+  .hobby {
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    background: var(--card);
+    padding: 20px 22px;
+    transition: transform .2s ease, border-color .2s ease, background .2s ease;
+  }
+  .hobby:hover {
+    transform: translateY(-3px);
+    border-color: rgba(79, 140, 255, .45);
+    background: rgba(79, 140, 255, .06);
+  }
+  .hobby .ico { font-size: 22px; }
+  .hobby h3 { margin: 10px 0 6px; font-size: 16px; }
+  .hobby p { margin: 0; font-size: 14px; color: var(--muted); line-height: 1.7; }
+
+  /* 联系方式 */
+  .contact-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .contact-item {
+    display: flex; align-items: center; gap: 14px;
+    border: 1px solid var(--line);
+    background: var(--card);
+    border-radius: 14px;
+    padding: 16px 18px;
+    transition: background .2s ease, border-color .2s ease, transform .2s ease;
+  }
+  .contact-item:hover {
+    background: rgba(255, 255, 255, .07);
+    border-color: rgba(53, 208, 165, .4);
+    transform: translateY(-2px);
+  }
+  .contact-item .ico {
+    width: 38px; height: 38px; flex: 0 0 38px;
+    display: grid; place-items: center;
+    border-radius: 10px;
+    background: rgba(79, 140, 255, .14);
+    border: 1px solid rgba(79, 140, 255, .3);
+    font-size: 17px;
+  }
+  .contact-item .k { font-size: 12px; color: var(--muted); letter-spacing: .08em; }
+  .contact-item .v { font-size: 15px; font-weight: 600; word-break: break-all; }
+  .contact-item .v .placeholder {
+    color: #f0b45a;
+    font-weight: 500;
+    font-size: 13px;
+  }
+
+  footer {
+    border-top: 1px solid var(--line);
+    padding: 26px 0 40px;
+    color: var(--muted);
+    font-size: 13px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  /* 入场动画 */
+  .reveal { opacity: 0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease; }
+  .reveal.show { opacity: 1; transform: none; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+    html { scroll-behavior: auto; }
+  }
+
+  /* 响应式 */
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; gap: 34px; padding: 56px 0 40px; }
+    .avatar-card { max-width: 260px; }
+    .grid-3 { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 640px) {
+    .wrap { width: calc(100% - 32px); }
+    nav.links { display: none; }
+    .grid-2, .grid-3, .contact-grid, .facts { grid-template-columns: 1fr; }
+    section { padding: 40px 0; }
+    .card { padding: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="brand"><span class="dot"></span>袁宇川 · Yu Yuan</div>
+    <nav class="links">
+      <a href="#about">关于我</a>
+      <a href="#skills">擅长技能</a>
+      <a href="#projects">项目经历</a>
+      <a href="#hobbies">兴趣爱好</a>
+      <a href="#contact">联系方式</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- ============ 首屏 ============ -->
+  <section class="hero" style="padding-bottom:24px;">
+    <div class="reveal">
+      <span class="eyebrow">复旦大学 · 金融学</span>
+      <h1>你好，我是<br><span class="accent">袁宇川</span></h1>
+      <p class="tagline">
+        复旦大学金融学专业研究生，研究方向为<strong>量化投资</strong>。
+        关注多因子选股、因子挖掘与回测框架、机器学习在资产定价中的应用，
+        习惯用数据和代码把模糊的投资直觉变成可验证的假设。
+      </p>
+      <div class="pill-row">
+        <span class="pill">量化投资</span>
+        <span class="pill">多因子选股</span>
+        <span class="pill">Python · 数据分析</span>
+        <span class="pill">资产定价</span>
+        <span class="pill">机器学习</span>
+      </div>
+      <div class="cta">
+        <a class="btn btn-primary" href="#projects">查看项目经历 ↓</a>
+        <a class="btn btn-ghost" href="#contact">联系我</a>
+      </div>
+    </div>
+
+    <div class="avatar-card reveal">
+      <div class="avatar-initials">YYC</div>
+      <div class="avatar-caption">Quantitative Investing</div>
+    </div>
+  </section>
+
+  <!-- ============ 关于我 ============ -->
+  <section id="about">
+    <div class="sec-head reveal">
+      <span class="sec-num">01</span>
+      <h2>关于我</h2>
+      <span class="line"></span>
+    </div>
+    <div class="grid-2">
+      <div class="card about-card reveal">
+        <p>
+          我叫袁宇川，目前在<strong>复旦大学</strong>攻读<strong>金融学</strong>，
+          研究与实践方向集中在中国 A 股市场的<strong>量化投资</strong>。
+        </p>
+        <p>
+          我更习惯从"问题—数据—模型—检验"的顺序出发：先想清楚要解释或捕捉的是什么，
+          再去构造因子、做分层与回测、检查换手与容量，最后坦然面对样本外结果。
+        </p>
+        <p>
+          平常喜欢把研究过程写成可复现的代码与笔记，也乐于和同学讨论策略背后的经济逻辑
+          与统计陷阱。
+        </p>
+      </div>
+      <div class="facts reveal">
+        <div class="fact"><div class="k">学校</div><div class="v">复旦大学</div></div>
+        <div class="fact"><div class="k">专业</div><div class="v">金融学</div></div>
+        <div class="fact"><div class="k">方向</div><div class="v">量化投资</div></div>
+        <div class="fact"><div class="k">所在地</div><div class="v">上海 · 杨浦</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 擅长技能 ============ -->
+  <section id="skills">
+    <div class="sec-head reveal">
+      <span class="sec-num">02</span>
+      <h2>擅长技能</h2>
+      <span class="line"></span>
+    </div>
+    <div class="grid-3">
+      <div class="card skill-card reveal">
+        <h3>编程与数据处理</h3>
+        <div class="sub">PROGRAMMING</div>
+        <div class="chips">
+          <span class="chip">Python</span>
+          <span class="chip">pandas / NumPy</span>
+          <span class="chip">SQL</span>
+          <span class="chip">MATLAB</span>
+          <span class="chip">Git</span>
+        </div>
+      </div>
+      <div class="card skill-card reveal">
+        <h3>量化研究方法</h3>
+        <div class="sub">QUANT RESEARCH</div>
+        <div class="chips">
+          <span class="chip">多因子模型</span>
+          <span class="chip">因子挖掘与正交化</span>
+          <span class="chip">策略回测</span>
+          <span class="chip">绩效归因</span>
+          <span class="chip">风险控制</span>
+        </div>
+      </div>
+      <div class="card skill-card reveal">
+        <h3>金融理论与建模</h3>
+        <div class="sub">FINANCE &amp; MODELING</div>
+        <div class="chips">
+          <span class="chip">资产定价</span>
+          <span class="chip">时间序列</span>
+          <span class="chip">机器学习</span>
+          <span class="chip">投资组合优化</span>
+          <span class="chip">数据分析</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 项目经历 ============ -->
+  <section id="projects">
+    <div class="sec-head reveal">
+      <span class="sec-num">03</span>
+      <h2>项目经历</h2>
+      <span class="line"></span>
+    </div>
+    <div class="card reveal">
+      <div class="tl">
+
+        <div class="tl-item">
+          <div class="when">2025 · 课程 / 研究项目</div>
+          <h3>多因子选股策略构建与回测</h3>
+          <div class="role">策略研究 · 因子构建 / 回测 / 绩效评价</div>
+          <ul>
+            <li>从估值、盈利、动量、波动、流动性等维度整理候选因子，完成去极值、标准化与行业市值中性化处理。</li>
+            <li>搭建截面回归 + 分层回测流程，比较单因子与合成因子的信息系数（IC）与分层收益单调性。</li>
+            <li>输出组合净值曲线、年度收益、最大回撤与换手率，并讨论样本外稳健性与交易成本影响。</li>
+          </ul>
+          <div class="tags">
+            <span class="tag">因子研究</span><span class="tag">分层回测</span><span class="tag">IC 分析</span><span class="tag">A 股</span>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="when">2025 · 数据分析课程项目</div>
+          <h3>金融数据清洗与资产收益特征分析</h3>
+          <div class="role">数据处理 · 描述统计 / 风险测度</div>
+          <ul>
+            <li>清洗并整合行情与财务数据，处理缺失值、复权与停牌等问题，构建规整的因子面板。</li>
+            <li>统计个股与组合收益的分布特征、自相关与风险指标（年化波动、下行风险、最大回撤）。</li>
+            <li>以可视化方式呈现跨行业、跨市值的收益差异，形成可复用的分析脚本。</li>
+          </ul>
+          <div class="tags">
+            <span class="tag">pandas</span><span class="tag">数据清洗</span><span class="tag">风险指标</span><span class="tag">可视化</span>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="when">2024 – 至今 · 研究与学习实践</div>
+          <h3>机器学习在资产定价与因子预测中的应用探索</h3>
+          <div class="role">个人研究 · 文献阅读 / 模型实验</div>
+          <ul>
+            <li>阅读因子模型与机器学习资产定价相关文献，梳理树模型、正则化回归等在收益预测中的使用方式。</li>
+            <li>在统一的数据切分下对比线性因子模型与非线性模型的表现，重点关注过拟合与样本外衰减问题。</li>
+          </ul>
+          <div class="tags">
+            <span class="tag">机器学习</span><span class="tag">资产定价</span><span class="tag">样本外检验</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 兴趣爱好 ============ -->
+  <section id="hobbies">
+    <div class="sec-head reveal">
+      <span class="sec-num">04</span>
+      <h2>兴趣爱好</h2>
+      <span class="line"></span>
+    </div>
+    <div class="grid-3">
+      <div class="hobby reveal">
+        <div class="ico">📈</div>
+        <h3>市场观察与策略复盘</h3>
+        <p>喜欢跟踪市场结构与资金流向，把看盘心得写成复盘笔记，再回头检验当初的判断对不对。</p>
+      </div>
+      <div class="hobby reveal">
+        <div class="ico">📚</div>
+        <h3>阅读</h3>
+        <p>偏爱投资经典、金融史与科普类书籍，也常读量化和机器学习方面的论文与博客。</p>
+      </div>
+      <div class="hobby reveal">
+        <div class="ico">🏃</div>
+        <h3>跑步与运动</h3>
+        <p>用慢跑来清空脑袋、整理思路；长期的配速训练也让我更相信"复利"这件事。</p>
+      </div>
+      <div class="hobby reveal">
+        <div class="ico">🧩</div>
+        <h3>数据小项目</h3>
+        <p>闲时喜欢抓公开数据做小分析，把生活里的问题变成一张图或一个小结论。</p>
+      </div>
+      <div class="hobby reveal">
+        <div class="ico">🎧</div>
+        <h3>播客与音乐</h3>
+        <p>通勤和写代码时听商业、科技类播客，偶尔也听点古典乐帮助专注。</p>
+      </div>
+      <div class="hobby reveal">
+        <div class="ico">🍜</div>
+        <h3>美食与旅行</h3>
+        <p>喜欢在城市里探店、看展，也会记录旅行中的见闻，保持对陌生事物的好奇。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 联系方式 ============ -->
+  <section id="contact">
+    <div class="sec-head reveal">
+      <span class="sec-num">05</span>
+      <h2>联系方式</h2>
+      <span class="line"></span>
+    </div>
+    <div class="contact-grid reveal">
+      <a class="contact-item" href="mailto:your.email@fudan.edu.cn">
+        <span class="ico">✉️</span>
+        <span>
+          <span class="k">邮箱</span>
+          <span class="v">your.email@fudan.edu.cn <span class="placeholder">（请替换）</span></span>
+        </span>
+      </a>
+      <div class="contact-item">
+        <span class="ico">💬</span>
+        <span>
+          <span class="k">微信</span>
+          <span class="v">your_wechat_id <span class="placeholder">（请替换）</span></span>
+        </span>
+      </div>
+      <div class="contact-item">
+        <span class="ico">🐙</span>
+        <span>
+          <span class="k">GitHub</span>
+          <span class="v">github.com/your-handle <span class="placeholder">（请替换）</span></span>
+        </span>
+      </div>
+      <div class="contact-item">
+        <span class="ico">📍</span>
+        <span>
+          <span class="k">地址</span>
+          <span class="v">上海市杨浦区 · 复旦大学</span>
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>© 2025 袁宇川 · 复旦大学金融学（量化投资方向）</span>
+    <span>Built with HTML &amp; CSS</span>
+  </footer>
+
+</main>
+
+<script>
+  // 滚动入场动画
+  (function () {
+    var items = document.querySelectorAll('.reveal');
+    if (!('IntersectionObserver' in window)) {
+      items.forEach(function (el) { el.classList.add('show'); });
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          e.target.classList.add('show');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    items.forEach(function (el, i) {
+      el.style.transitionDelay = Math.min(i % 6, 5) * 60 + 'ms';
+      io.observe(el);
+    });
+  })();
+</script>
+</body>
+</html>
